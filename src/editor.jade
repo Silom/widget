@@ -1,0 +1,23 @@
+div.demo-editor(ng-show="editorActive")
+  
+  
+  div.tool-section
+    div
+      label
+        input(type="radio" name="optradio")
+        | List
+    div
+      label
+        input(type="radio" name="optradio")
+        | Text
+    div
+      label
+        input(type="radio" name="optradio")
+        | (Diagram)
+  
+  div.tool-section
+    legend Content
+    textarea(type='text' ng-model='widgetcontent')
+    
+  div.tool-section
+    a.button Add to Storage

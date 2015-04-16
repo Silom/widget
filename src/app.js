@@ -6,6 +6,17 @@ var widgetApp = require('./widget')
 var app = angular.module('demoapp', [ widgetApp.name ])
 
 
+app.controller('appInformationCtrl', function ($scope) {
+  $scope.editorActive = true
+})
+
+
+
+
+
+
+
+
 // require all the features that are given by the manifest
 
 

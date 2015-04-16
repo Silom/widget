@@ -10,6 +10,10 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 5px;
 }
 
+div.inline {
+  display: inline-block;
+}
+
 a {
   color: #fff;
   text-decoration: none;
@@ -29,16 +33,20 @@ a {
   display: flex;
 }
 
-$nav-width: 200px;
 .demo-editor {
-  width: $nav-width;
+  background: #fff;
+  width: 200px;
   height: 100%;
   position: fixed;
   top: 40px;
   right: 0;
   border-left: 1px solid #DFDADA;
-  padding: 10px;
   box-sizing: border-box;
+
+  .tool-section {
+    padding: 10px;
+    border-bottom: 1px solid #DFDADA;
+  }
 }
 
 .demo-container {
@@ -47,5 +55,16 @@ $nav-width: 200px;
   padding: 6px;
   margin-left: 25px;
   margin-top: 25px;
-  margin-right: $nav-width + 25px;
+  margin-right: 25px;
+}
+
+.toggle-tools {
+  display: inline-block;
+  float: right;
+  margin-top: 10px;
+}
+
+a.button {
+  color: #9e1111;
+  cursor: pointer;
 }

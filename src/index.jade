@@ -9,20 +9,10 @@ html
     link(rel="stylesheet" href="css/bundle.css")            
     script(src="js/bundle.js")
                               
-  body(ng-app="demoapp" ng-cloak)
-    div.toolbar
-      h2(style='padding: 9px 0 0 5px;') ngWidget Demo
-  
-    div.demo-editor
-      div.header
-        h3 Tools
-      div.tool
-        legend Content
-        textarea(type='text' ng-model='widgetcontent')
-    
+  body(ng-app="demoapp" ng-cloak ng-controller="appInformationCtrl")
+    include ./toolbar
+    include ./editor
+
     div.flexbox.center.demo-container
       ng-widget.widget
         h1 {{widgetcontent}}
-            
-            
-      
