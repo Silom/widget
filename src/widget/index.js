@@ -1,9 +1,6 @@
 'use strict';
 
-var angular = require('angular-bsfy');
-
 var widgetApp = angular.module('ngWidget', [])
-
 
 widgetApp.directive('ngWidget', function () {
   return {
@@ -14,9 +11,10 @@ widgetApp.directive('ngWidget', function () {
       showDevbar: '@'
     },
     template: require('./widget.jade'),
-    link: function (scope, elem, attr) {
-      if (attr.showDevbar) scope.showDevbar = true
+    link: function ($scope, $elem, $attr) {
 
+      if ($attr.showDevbar)
+        $scope.showDevbar = true
 
 
     }

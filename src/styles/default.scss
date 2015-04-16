@@ -5,6 +5,16 @@ body, html {
   background: #fff;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
 .toolbar {
   height: 40px;
   border-bottom: 1px solid #DFDADA;
@@ -13,4 +23,29 @@ body, html {
 
 .center {
   margin: auto;
+}
+
+.flexbox {
+  display: flex;
+}
+
+$nav-width: 200px;
+.demo-editor {
+  width: $nav-width;
+  height: 100%;
+  position: fixed;
+  top: 40px;
+  right: 0;
+  border-left: 1px solid #DFDADA;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.demo-container {
+  width: auto;
+  border: 1px solid red;
+  padding: 6px;
+  margin-left: 25px;
+  margin-top: 25px;
+  margin-right: $nav-width + 25px;
 }

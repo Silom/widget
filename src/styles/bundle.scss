@@ -1,34 +1,37 @@
 @import './default.scss';
+@import './font-awesome.scss';
 
-.flexbox {
-  display: flex;
+.grid-box {
+  box-sizing: border-box;
+  display: inline-block;
+
+  &.w50 {
+    width: 50%;
+  }
 }
 
-.demo-container {
-  margin-top: 30px;
-  width: 75%;
-
-  border: 1px solid red;
-  padding: 4px;
+.pull-right {
+  text-align: right;
 }
 
 
 
 .widget {
-  background: linear-gradient(to bottom,#f5fcff 0,#fff 100%);
+  $padding-viewport: 8px 10px;
 
-  header {
-    padding: 5px 10px;
-    color: #FFF;
-    border: 1px solid #C2C2C2;
-    background-color: #4c4f53;
+  background: linear-gradient(to bottom, #f5fcff 0, #fff 100%);
+
+  .header {
+    padding: $padding-viewport;
+    color: rgb(241, 241, 241);
+    border: 1px solid rgb(13, 22, 27);
+    background-color: rgb(25, 25, 25);
   }
 
   .content {
-    color: #333;
-    border-bottom: 1px solid #CCC;
-    border-left: 1px solid #CCC;
-    border-right: 1px solid #CCC;
-    padding: 5px 10px;
+    padding: $padding-viewport;
+    color: rgb(51, 51, 51);
+    border: 1px solid rgb(187, 187, 187);
+    background-color: rgb(255, 255, 255);
   }
 }

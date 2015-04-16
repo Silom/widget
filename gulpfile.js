@@ -30,6 +30,7 @@ var sources = {}
 sources.styles = './src/**/*.scss'
 sources.docs = './src/**/*.jade'
 sources.js = './src/**/*.js'
+sources.fa = './node_modules/font-awesome/fonts/**'
 
 // Init selector
 sources.root = {}
@@ -46,12 +47,14 @@ dest.root = gulp.configs.isProduction ? './build/prod/' : './build/dev/'
 dest.docs = dest.root
 dest.styles = dest.root + 'css/'
 dest.js = dest.root + 'js/'
+dest.fa = dest.root + 'fonts/'
 
 // build and watch tasks
 require('./gulp/utils')(gulp, plugins, sources, dest)
 require('./gulp/sass')(gulp, plugins, sources, dest)
 require('./gulp/jade')(gulp, plugins, sources, dest)
 require('./gulp/browserify')(gulp, plugins, sources, dest)
+require('./gulp/font-awesome.js')(gulp, plugins, sources, dest)
 
 // Main trigger with dev switch
 gulp.task('default', ['clean'], function () {
@@ -59,9 +62,9 @@ gulp.task('default', ['clean'], function () {
 })
 
 gulp.task('app:build', function () {
-  gulp.start(['browserify:build', 'jade:build', 'sass:build'])
+  gulp.start(['browserify:build', 'jade:build', 'sass:build', 'fa:build'])
 })
 
 gulp.task('app:dev', function () {
-  gulp.start(['jade:watch', 'sass:watch', 'browserify:watch'])
+  gulp.start(['jade:watch', 'sass:watch', 'browserify:watch', 'fa:build'])
 })
