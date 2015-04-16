@@ -1,0 +1,24 @@
+.grid-box {
+  box-sizing: border-box;
+  display: inline-block;
+
+  &.w50 {
+    width: 50%;
+  }
+}
+
+.pull-right {
+  text-align: right;
+}
+
+div.inline {
+  display: inline-block;
+}
+
+.center {
+  margin: auto;
+}
+
+.flexbox {
+  display: flex;
+}

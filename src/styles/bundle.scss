@@ -1,37 +1,6 @@
+@import './app/resets.scss';
+@import './app/helper.scss';
 @import './default.scss';
 @import './font-awesome.scss';
-
-.grid-box {
-  box-sizing: border-box;
-  display: inline-block;
-
-  &.w50 {
-    width: 50%;
-  }
-}
-
-.pull-right {
-  text-align: right;
-}
-
-
-
-.widget {
-  $padding-viewport: 8px 10px;
-
-  background: linear-gradient(to bottom, #f5fcff 0, #fff 100%);
-
-  .header {
-    padding: $padding-viewport;
-    color: rgb(241, 241, 241);
-    border: 1px solid rgb(13, 22, 27);
-    background-color: rgb(25, 25, 25);
-  }
-
-  .content {
-    padding: $padding-viewport;
-    color: rgb(51, 51, 51);
-    border: 1px solid rgb(187, 187, 187);
-    background-color: rgb(255, 255, 255);
-  }
-}
+@import './app/basic-app.scss';
+@import './widget-theme/default.scss';
