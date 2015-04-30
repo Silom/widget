@@ -1,25 +1,39 @@
 'use strict';
 
-var widgetApp = angular.module('ngWidget', [])
+var widgetApp = angular.module('ngWidget', [require('./components/local-storage.js').name])
 
-widgetApp.directive('ngWidget', function () {
+// Loops widgets and gets
+widgetApp.directive('ngWidgetRender', function (localStorageService) {
   return {
     restrict: 'E',
-    transclude: true,
     replace: true,
     scope: {
-      showDevbar: '@'
+      theme: '@',// A Css class for styles
+      storagePrefix: '@'// Separate widgets logical from each other
     },
-    template: require('./widget.jade'),
+    template: '<div></div>',
     link: function ($scope, $elem, $attr) {
-
-      if ($attr.showDevbar)
-        $scope.showDevbar = true
-
-
+      function addWidget() {}
     }
   }
 })
 
+
+widgetApp.directive('ngWidget', function () {
+
+  return {
+    restrict: 'E',
+    transclude: true,
+    replace: true,
+    scope: {},
+    template: require('./widget.jade'),
+    link: function ($scope, $elem, $attr) {
+
+
+      function deleteSelf() {}
+      function updateSelf() {} // change behaviour (e.g. Text, API resource)
+    }
+  }
+})
 
 module.exports = widgetApp
