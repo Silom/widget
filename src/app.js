@@ -1,11 +1,12 @@
 'use strict';
 
-var angular = require('angular-bsfy')
-var widgetApp = require('./widget')
-
-var app = angular.module('demoapp', [ widgetApp.name ])
+var react = require('react');
+var WidgetApp = require('./components/App.react');
 
 
-app.controller('appInformationCtrl', function ($scope) {
-  $scope.editorActive = true
-})
+// Render Widgets and a toolbar for widget creation (the logic comes from the widget lib)
+// (TODO move the app to a node package after it is ready for build)
+React.render(
+	<WidgetApp />,
+	document.getElementById("appcontainer")
+)

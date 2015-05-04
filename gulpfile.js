@@ -6,14 +6,13 @@ var gulp = require('gulp')
 var plugins = {
   gutil: require('gulp-util'),
   browserify: require('browserify'),
+  babelify: require('babelify'),
   exorcist: require('exorcist'),
   autoprefixer: require('gulp-autoprefixer'),
   plumber: require('gulp-plumber'),
   watch: require('gulp-watch'),
   watchify: require('watchify'),
   sass: require('gulp-sass'),
-  jadeify: require('jadeify'),
-  jade: require('gulp-jade'),
   rm: require('rimraf'),
   source: require('vinyl-source-stream'),
   transform: require('vinyl-transform')
@@ -28,13 +27,13 @@ gulp.configs = {
 var sources = {}
 // Global selector
 sources.styles = './src/**/*.scss'
-sources.docs = './src/**/*.jade'
+sources.docs = './src/**/*.html'
 sources.js = './src/**/*.js'
 sources.fa = './node_modules/font-awesome/fonts/**'
 
 // Init selector
 sources.root = {}
-sources.root.docs = './src/index.jade'
+sources.root.docs = './index.html'
 sources.root.js = './src/app.js'
 sources.root.style = './src/styles/bundle.scss'
 
@@ -52,7 +51,7 @@ dest.fa = dest.root + 'fonts/'
 // build and watch tasks
 require('./gulp/utils')(gulp, plugins, sources, dest)
 require('./gulp/sass')(gulp, plugins, sources, dest)
-require('./gulp/jade')(gulp, plugins, sources, dest)
+require('./gulp/html')(gulp, plugins, sources, dest)
 require('./gulp/browserify')(gulp, plugins, sources, dest)
 require('./gulp/font-awesome.js')(gulp, plugins, sources, dest)
 
@@ -62,9 +61,9 @@ gulp.task('default', ['clean'], function () {
 })
 
 gulp.task('app:build', function () {
-  gulp.start(['browserify:build', 'jade:build', 'sass:build', 'fa:build'])
+  gulp.start(['browserify:build', 'html:build', 'sass:build', 'fa:build'])
 })
 
 gulp.task('app:dev', function () {
-  gulp.start(['jade:watch', 'sass:watch', 'browserify:watch', 'fa:build'])
+  gulp.start(['html:watch', 'sass:watch', 'browserify:watch', 'fa:build'])
 })

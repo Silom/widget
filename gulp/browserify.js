@@ -10,7 +10,9 @@ module.exports = function (gulp, plugins, sources, destinations) {
     debug: gulp.configs.isProduction ? false : true
   })
   browserify.add(sources.root.js)
-  browserify.transform('jadeify')
+
+  browserify.transform(plugins.babelify)
+
 
   // Browserify build and concat (We use watchify for browserify, so we dont lose performance)
   gulp.task('browserify:watch', ['browserify:build'], function() {
