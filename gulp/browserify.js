@@ -11,7 +11,10 @@ module.exports = function (gulp, plugins, sources, destinations) {
   })
   browserify.add(sources.root.js)
 
-  browserify.transform(plugins.babelify)
+  browserify.transform(plugins.babelify.configure({
+    sourceMaps: true
+  }))
+  
 
 
   // Browserify build and concat (We use watchify for browserify, so we dont lose performance)
