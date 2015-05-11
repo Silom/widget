@@ -1,44 +1,50 @@
 var React = require('react')
+var PropTypes = React.PropTypes
 var WidgetStore = require('../stores/WidgetStore')
 var WidgetAction = require('../actions/WidgetAction')
 
 
-function getWidgetState() {
-  return {
-    allWidgets: WidgetStore.getAll()
-  }
-}
-
-
 var WidgetListing = React.createClass({
-	getInitialState: function() {
-		return {
-			widgets: WidgetStore.getAll()
-		}
-	},
+	propTypes: {
+    allWidgets: PropTypes.object.isRequired
+  },
 	render: function() {
-		return (
-  		<div>Widget render loop</div>
-		)
+    if (Object.keys(this.props.allWidgets).length < 1)
+      return null
+
+    var allWidgets = this.props.allWidgets
+    var widgets = []
+
+
+    // Push Widgets to the list
+    for (var key in allWidgets) {
+      widgets.push(
+        <div className="widget theme-default">
+          <div className="header">
+            <div className="grid-box">
+              <span>{allWidgets[key]._id}</span>
+            </div>
+            <div className="grid-box pull-right">
+							icon
+            </div>
+          </div>
+          <div className="content">
+            {allWidgets[key].meta}
+          </div>
+        </div>
+      )
+    }
+
+    return (
+			<div className="flexbox center demo-container">{widgets}</div>
+    )
 	},
   delete: function(id) {
     WidgetAction.destroy(id)
   },
   update: function(id, changes) {
     WidgetAction.update(id, changes)
-  },
-
-	componentDidMount: function() {
-		WidgetStore.addChangeListener(this._onChange);
-	},
-	componentWillUnmount: function() {
-		WidgetStore.removeChangeListener(this._onChange);
-	},
-	_onChange: function() {
-		this.setState({
-			widgets: WidgetStore.getAll()
-		})
-	}
+  }
 })
 
 

@@ -13,7 +13,6 @@ var WidgetAction = {
       actionType: WidgetConstants.WIDGET_DESTROY,
       id: id
     })
-
 	},
 	update: function(id, update) {
 		 AppDispatcher.dispatch({

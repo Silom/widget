@@ -26,7 +26,7 @@ gulp.configs = {
 //- Sources
 var sources = {}
 // Global selector
-sources.styles = './src/**/*.scss'
+sources.styles = './styles/**/*.scss'
 sources.docs = './src/**/*.html'
 sources.js = './src/**/*.js'
 sources.fa = './node_modules/font-awesome/fonts/**'
@@ -35,7 +35,7 @@ sources.fa = './node_modules/font-awesome/fonts/**'
 sources.root = {}
 sources.root.docs = './index.html'
 sources.root.js = './src/app.js'
-sources.root.style = './src/styles/bundle.scss'
+sources.root.style = './styles/bundle.scss'
 
 //- Destinations
 var dest = {}

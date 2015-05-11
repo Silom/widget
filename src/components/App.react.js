@@ -1,25 +1,37 @@
 var React = require('react')
 var WidgetStore = require('../stores/WidgetStore')
-var WidgetAction = require('../actions/WidgetAction')
 
 var WidgetCreation = require('./WidgetCreation.react')
 var WidgetListing = require('./WidgetListing.react')
 
 
+function getWidgetState() {
+	return {
+		widgets: WidgetStore.getAll()
+	}
+}
+
 var WidgetApp = React.createClass({
 	getInitialState: function() {
-		return {
-			widgets: WidgetStore.getAll()
-		}
+		return getWidgetState()
 	},
+	componentDidMount: function() {
+    WidgetStore.addChangeListener(this._onChange);
+  },
+  componentWillUnmount: function() {
+    WidgetStore.removeChangeListener(this._onChange);
+  },
 	render: function() {
 		return (
       <div>
     		<WidgetCreation />
-    		<WidgetListing />
+    		<WidgetListing allWidgets={this.state.widgets} />
       </div>
 		)
-	}
+	},
+  _onChange: function() {
+    this.setState(getWidgetState())
+  }
 })
 
 

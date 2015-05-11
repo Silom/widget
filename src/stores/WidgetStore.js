@@ -13,17 +13,19 @@ let _widgets = []
 var metaWidget = {
 	_id: Number,
 	feature: {
-		close: true,
-		order: Number //flex order
+		close: Boolean,
+		style: {class: String},
+		flexbox: {order: Number}
 	},
-	meta: {
-		content: "html/jsx",
-		theme: String
-	}
+	meta: String
 }
 
-function create(pram) {
-	return "create: " + pram
+function create(param) {
+	param._id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36)
+
+	_widgets[param._id] = param
+
+	return param
 }
 function update(pram) {
 	return "update: " + pram
@@ -77,8 +79,7 @@ AppDispatcher.register(function(action) {
 
   switch(action.actionType) {
     case AppConstants.WIDGET_CREATE:
-      // create(widgetObj)
-      create()
+      create(action.payload)
       WidgetStore.emitChange()
       break
 
