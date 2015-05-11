@@ -25,7 +25,9 @@ var WidgetListing = React.createClass({
               <span>{allWidgets[key]._id}</span>
             </div>
             <div className="grid-box pull-right">
-							icon
+							<a href="#">
+								<i className="icon fa fa-cog"></i>
+							</a>
             </div>
           </div>
           <div className="content">
