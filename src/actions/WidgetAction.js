@@ -5,20 +5,21 @@ var WidgetAction = {
 	create: function(widget) {
 		 AppDispatcher.dispatch({
       actionType: WidgetConstants.WIDGET_CREATE,
-      text: "test create"
+      payload: widget
     })
 	},
-	destroy: function(widget) {
+	destroy: function(id) {
 		 AppDispatcher.dispatch({
       actionType: WidgetConstants.WIDGET_DESTROY,
-      text: "test destroy"
+      id: id
     })
 
 	},
-	update: function(widget, update) {
+	update: function(id, update) {
 		 AppDispatcher.dispatch({
       actionType: WidgetConstants.WIDGET_UPDATE,
-      text: "test update"
+      id: id,
+			payload: update
     })
 	}
 }

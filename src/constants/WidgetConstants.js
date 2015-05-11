@@ -1,4 +1,4 @@
-var keymirror = require('keymirror')
+var keymirror = require('react/lib/keymirror')
 
 module.exports = keymirror({
   WIDGET_CREATE: null,
