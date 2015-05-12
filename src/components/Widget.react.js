@@ -13,7 +13,7 @@ var Widget = React.createClass({
     var widget = this.props.widget
 
     return (
-			<div className="widget theme-default">
+			<div className={this.amendThemeClass()}>
 				<div className="header">
 					<div className="grid-box">
 						<span>{widget._id}</span>
@@ -34,7 +34,10 @@ var Widget = React.createClass({
   update: function() {
 		// TODO
     // WidgetAction.update(id, changes)
-  }
+  },
+	amendThemeClass: function () {
+		return "widget theme-" + (this.props.widget.feature.style.class || 'default')
+	}
 })
 
 

@@ -5,39 +5,53 @@ var WidgetCreation = React.createClass({
 	render: function() {
 		return (
 			<div id="demo-editor">
-			  <div class="tool-section" id="type-form-section">
+			  <div className="tool-section" id="type-form-section">
 			    <fieldset>
 				    <legend>Types</legend>
 						<div>
-				      <label for="radio-text">Text:</label>
-			        <input name="type" type="radio" value="text" defaultChecked={true} id="radio-text"/>
+				      <label>Text:</label>
+			        <input name="type" type="radio" value="text" defaultChecked={true}/>
 						</div>
 						<div>
-				      <label for="radio-list">List:</label>
-			        <input name="type" type="radio" value="list" id="radio-list"/>
+				      <label>List:</label>
+			        <input name="type" type="radio" value="list"/>
 						</div>
 					</fieldset>
 			  </div>
-				<button onClick={this.create}>Create Widget</button>
+
+			  <div className="tool-section" id="style-form-section">
+			    <fieldset>
+				    <legend>Styles</legend>
+						<div>
+				      <label>Default:</label>
+			        <input name="style" type="radio" value="default" defaultChecked={true}/>
+						</div>
+						<div>
+				      <label>Red:</label>
+			        <input name="style" type="radio" value="red"/>
+						</div>
+					</fieldset>
+			  </div>
+
+				<div className="tool-section-end">
+					<button onClick={this.create}>Create Widget</button>
+				</div>
 			</div>
 		)
-		// if list make list editor else just text input
-		// <div class="tool-section">
-	  //   <legend>Type-Contents</legend>
-	  //   <textarea type="text" ng-model="widgetcontent"></textarea>
-	  // </div>
 	},
   create: function() {
+		var listJsx = <div><h2>User List</h2><ul><li>Albert Musterman</li><li>Emil Dante</li><li>Shara Boje</li></ul></div>
+		var textJsx = <div><h2>Info Panel</h2><p>Reminder text for you. :)</p></div>
+
     WidgetAction.create({
-			meta: document.querySelector('#type-form-section input:checked').value === 'list' ?
-			<ul><li>Hello 1</li><li>Hello 2</li></ul> : <p>Some Text</p>,
+			meta: document.querySelector('#type-form-section input:checked').value === 'list' ? listJsx : textJsx,
 			feature: {
 				close: true,
 				flexbox: {
 					order: 1
 				},
 				style: {
-					class: "default"
+					class: document.querySelector('#style-form-section input:checked').value
 				}
 			}
 		})

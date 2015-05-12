@@ -5,7 +5,7 @@ var Widget = require('./Widget.react')
 
 var WidgetListing = React.createClass({
 	propTypes: {
-    allWidgets: PropTypes.object.isRequired
+    allWidgets: PropTypes.array.isRequired
   },
 	render: function() {
     if (Object.keys(this.props.allWidgets).length < 1)
@@ -14,10 +14,9 @@ var WidgetListing = React.createClass({
     var allWidgets = this.props.allWidgets
     var widgets = []
 
-
     // Push Widgets to the list
     for (var key in allWidgets) {
-      widgets.push(<Widget widget={allWidgets[key]} />)
+      widgets.push(<Widget widget={allWidgets[key]} key={allWidgets[key]._id} />)
     }
 
     return (
