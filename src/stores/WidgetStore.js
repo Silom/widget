@@ -20,18 +20,21 @@ var metaWidget = {
 	meta: String
 }
 
-function create(param) {
-	param._id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36)
+function create(widget) {
+	widget._id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36)
 
-	_widgets[param._id] = param
+	_widgets[widget._id] = widget
 
-	return param
+	return widget
 }
+
 function update(pram) {
 	return "update: " + pram
 }
-function destroy(pram) {
-	return "destroy: " + pram
+
+function destroy(id) {
+	delete _widgets[id]
+	return id
 }
 
 
@@ -84,14 +87,12 @@ AppDispatcher.register(function(action) {
       break
 
     case AppConstants.WIDGET_DESTROY:
-      // destroy(widgetObj)
-      destroy()
+      destroy(action.id)
       WidgetStore.emitChange()
       break
 
     case AppConstants.WIDGET_UPDATE:
-      // update(widgetObj)
-      update()
+      // update()
       WidgetStore.emitChange()
       break
 

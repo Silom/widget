@@ -1,8 +1,7 @@
 var React = require('react')
 var PropTypes = React.PropTypes
-var WidgetStore = require('../stores/WidgetStore')
-var WidgetAction = require('../actions/WidgetAction')
 
+var Widget = require('./Widget.react')
 
 var WidgetListing = React.createClass({
 	propTypes: {
@@ -18,35 +17,13 @@ var WidgetListing = React.createClass({
 
     // Push Widgets to the list
     for (var key in allWidgets) {
-      widgets.push(
-        <div className="widget theme-default">
-          <div className="header">
-            <div className="grid-box">
-              <span>{allWidgets[key]._id}</span>
-            </div>
-            <div className="grid-box pull-right">
-							<a href="#">
-								<i className="icon fa fa-cog"></i>
-							</a>
-            </div>
-          </div>
-          <div className="content">
-            {allWidgets[key].meta}
-          </div>
-        </div>
-      )
+      widgets.push(<Widget widget={allWidgets[key]} />)
     }
 
     return (
 			<div className="flexbox center demo-container">{widgets}</div>
     )
-	},
-  delete: function(id) {
-    WidgetAction.destroy(id)
-  },
-  update: function(id, changes) {
-    WidgetAction.update(id, changes)
-  }
+	}
 })
 
 
