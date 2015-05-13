@@ -31,7 +31,7 @@ var Widget = React.createClass({
 						</a>
 					</div>
 				</div>
-				<div className="content">{widget.meta}</div>
+				<div className="content" dangerouslySetInnerHTML={{__html: widget.meta}} ></div>
 			</div>
 		)
 	},

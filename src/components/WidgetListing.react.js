@@ -5,7 +5,7 @@ var Widget = require('./Widget.react')
 
 var WidgetListing = React.createClass({
 	propTypes: {
-    allWidgets: PropTypes.array.isRequired
+    allWidgets: PropTypes.object.isRequired
   },
 	render: function() {
     if (Object.keys(this.props.allWidgets).length < 1)

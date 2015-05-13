@@ -3,43 +3,41 @@ var AppConstants = require('../constants/WidgetConstants')
 var EventEmitter = require('events').EventEmitter
 var morv = require('../utils/morv')
 var assign = require('object-assign')
+var localforge = require('localforage')
 
 const CHANGE_EVENT = "change"
+const STORAGE_KEY = "widgets"
 
-// Holds all widgets within an array.
-// TODO get local storage as initState
-let _widgets = []
+let _widgets = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}
 
-var metaWidget = {
-	_id: Number,
-	feature: {
-		close: Boolean,
-		style: {class: String},
-		flexbox: {order: Number}
-	},
-	meta: String
+function saveToLocalStorage() {
+	localStorage.setItem(STORAGE_KEY, JSON.stringify(_widgets))
 }
 
-function create(widget) {
-	widget._id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36)
+function create(widget, id) {
+	widget._id = id || (+new Date() + Math.floor(Math.random() * 999999)).toString(36)
 
 	_widgets[widget._id] = widget
 
+	saveToLocalStorage()
 	return widget
 }
 
 function update(id, update) {
 	_widgets[id] = assign({}, _widgets[id], update)
+	saveToLocalStorage()
 	return _widgets[id]
 }
 // FIXME get it working with the update function only
 function updateOrder(id, order) {
-	console.log(order)
 	_widgets[id].feature.flexbox.order = order
+	saveToLocalStorage()
+	return _widgets[id]
 }
 
 function destroy(id) {
 	delete _widgets[id]
+	saveToLocalStorage()
 	return id
 }
 
