@@ -21,4 +21,6 @@ div.inline {
 
 .flexbox {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }

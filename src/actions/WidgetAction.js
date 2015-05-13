@@ -20,6 +20,14 @@ var WidgetAction = {
       id: id,
 			payload: update
     })
+	},
+	order: function (id, order) {
+		 AppDispatcher.dispatch({
+      actionType: WidgetConstants.WIDGET_ORDER,
+      id: id,
+			payload: order
+    })
+
 	}
 }
 

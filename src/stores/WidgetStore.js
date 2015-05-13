@@ -28,8 +28,14 @@ function create(widget) {
 	return widget
 }
 
-function update(pram) {
-	return "update: " + pram
+function update(id, update) {
+	_widgets[id] = assign({}, _widgets[id], update)
+	return _widgets[id]
+}
+// FIXME get it working with the update function only
+function updateOrder(id, order) {
+	console.log(order)
+	_widgets[id].feature.flexbox.order = order
 }
 
 function destroy(id) {
@@ -77,7 +83,6 @@ var WidgetStore = assign({}, EventEmitter.prototype, {
 })
 
 
-
 AppDispatcher.register(function(action) {
 
   switch(action.actionType) {
@@ -93,6 +98,11 @@ AppDispatcher.register(function(action) {
 
     case AppConstants.WIDGET_UPDATE:
       // update()
+      WidgetStore.emitChange()
+      break
+
+    case AppConstants.WIDGET_ORDER:
+      updateOrder(action.id, action.payload)
       WidgetStore.emitChange()
       break
 
