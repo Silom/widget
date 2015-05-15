@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>widget.js</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/bundle.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Widgets are great</h1>
+					<h4>"Make them with React and they get even greater"</h3>
+					<p>
+						<small>By <a href="#">Valentin Wetenkamp</a></small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Moin Moin</h2>
+					<p class="fragment" data-fragment-index="1">Was ist ein Widget</p>
+					<p class="fragment" data-fragment-index="2">React.js und FLUX</p>
+					<p class="fragment" data-fragment-index="3">Entwicklung von Widgets</p>
+					<p class="fragment" data-fragment-index="4">Weitergehende Entwicklung</p>
+				</section>
+
+				<!--
+				1) Was ist ein Widget (Anwender Sicht + Einleitung ins technische)
+				Widgets sind Elementcontainer gefüllt mit beliebigen (dynamischen) Daten und in der regel auch interaktiv.
+				Die library die ich entwickelt habe soll das erstellen von Widgets individuell für den benutzer ermöglichen,
+				std. funktionalitäten gewärleisten und auch die widgets individualsieren.
+				Die library ist nur der data provider und agiert über objekte die der entwickler weiter/rein geben muss.
+				-->
+				<section>
+					<section>
+						<h2>Was ist ein Widget?</h2>
+
+						<blockquote cite="http://en.wikipedia.org/wiki/Web_widget" class="fragment" data-fragment-index="1">
+							&ldquo;It's a small application with limited functionality that can be installed within a web page by an end user.&rdquo;
+							-<em>W3C</em>
+						</blockquote>
+					</section>
+
+					<section>
+						<h2>Was ermöglicht uns ein Widget?</h2>
+						<p class="fragment" data-fragment-index="1">Individuelle GUIs</p>
+						<p class="fragment" data-fragment-index="2">Konfigurierbarer Informationsumfang</p>
+					</section>
+
+					<section>
+						<h2>Wie könnte ein Widget aussehen?</h2>
+					</section>
+
+					<section data-transition="slide" data-background="#fbfbfb" data-background-transition="zoom">
+						<div id="appcontainer"></div>
+					</section>
+				</section>
+
+				<!--
+				2) FLUX und REACT (Wissen über MVC + React)
+				React ist eine Library die in diesem projekt primär verwendet wurde, sie stellt das V im MVC da.
+				Um den vollständigen stack herzustellen wird zuzüglich FLUX verwenden, ein Software stack der für
+				React MVC anwendungen entwickelt wurde
+				-->
+				<section>
+					<section>
+						<h2>FLUX und REACT</h2>
+						<ul>
+							<li class="fragment" data-fragment-index="1">View <em class="fragment" data-fragment-index="2">(React)</em></li>
+							<li class="fragment" data-fragment-index="3">Action</li>
+							<li class="fragment" data-fragment-index="4">Dispatcher</li>
+							<li class="fragment" data-fragment-index="5">Store</li>
+						</ul>
+					</section>
+
+					<section>
+						<img src="flux.png" alt="FLUX" style="border: 0; box-shadow: none; background: transparent;"/>
+					</section>
+				</section>
+
+				<!--
+				3) Widgets Nutzung (Einleitung Technisch)
+				Widget JSON aufbau und einspeisung.
+				- Meta key
+				- feature key
+				- _id key
+				-->
+				<section>
+					<section>
+						<h2>Widgets Nutzung</h2>
+						<p>
+							<em>Widgets Erstellen und Rendern</em>
+						</p>
+					</section>
+					<section>
+						<h2>Widgets erstellen</h2>
+						<pre><code data-trim contenteditable>
+var WidgetAction = require('../actions/WidgetAction')
+WidgetAction.create({
+	meta: "Hello Widget",
+	feature: {
+		close: true,
+		order: 1,
+		style: "cssClass"
+	}
+})
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Widgets Renderinformationen bekommen</h2>
+						<pre><code data-trim contenteditable>
+var WidgetStore = require('../actions/WidgetStore')
+WidgetStore.getAll() // return Array
+WidgetStore.get(id) // return object
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Widgets als View Rendern</h2>
+						<pre><code data-trim contenteditable>
+var widgets = WidgetStore.getAll()
+
+var WidgetList = React.createClass({
+	render: function () {
+		return ( &lt;div&gt;{widgets}&lt;/div&gt; )
+	}
+})
+
+React.render(
+	&lt;WidgetList/&gt;,
+	document.getElementById("widget-list")
+)
+						</code></pre>
+						<p>Ungefähr <a href="#/2/3">das</a> kommt raus.</p>
+					</section>
+				</section>
+
+				<!--
+				4) Weitergehende entwicklung (erweiterbarkeit und zukünftige verwendung)
+				Da die library streng genommen nur mit den daten arbeitet, kann sie in jedem bereich angewand werden,
+				dass daten einen funktionscontext geben soll.
+				-->
+				<section>
+					// Kann auch als daten serilizer verwendet werden
+					// Mit netzwerk resourcen über ajax befüllen
+					// Mehr funktionen
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		<script src="js/bundle.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

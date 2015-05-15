@@ -41,8 +41,8 @@ var WidgetCreation = React.createClass({
 	},
   create: function() {
 		// Static templates for pre defined widgets (List and Textbox)
-		var listJsx = "<div><h2>User List</h2><ul><li>Albert Muster</li><li>Emil Dante</li><li>Shara Boje</li></ul></div>"
-		var textJsx = "<div><h2>Info Panel</h2><p>Reminder text for you. :)</p></div>"
+		var listJsx = "<div><h4>User List</h4><ul><li>Albert Muster</li><li>Emil Dante</li><li>Shara Boje</li></ul></div>"
+		var textJsx = "<div><h4>Info Panel</h4><p>Reminder text for you. :)</p></div>"
 
     WidgetAction.create({
 			meta: document.querySelector('#type-form-section input:checked').value === 'list' ? listJsx : textJsx,

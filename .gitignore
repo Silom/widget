@@ -1,3 +1,7 @@
 
 build/
 node_modules/
+presi/fonts
+presi/css/bundle.css
+presi/js/bundle.js
+presi/js/bundle.js.map

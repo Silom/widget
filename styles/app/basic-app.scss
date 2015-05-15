@@ -1,29 +1,13 @@
-
-.toolbar {
-  height: 40px;
-  border-bottom: 1px solid #DFDADA;
-  background-color: #f0f0f0;
-}
-
 #demo-editor {
-  border-bottom: 1px solid #DFDADA;
   box-sizing: border-box;
 
   .tool-section {
-    padding: 10px 10px 10px 0;
     display: inline-block;
   }
   .tool-section-end {
-    padding-bottom: 10px;
     display: block;
   }
 }
 
 .demo-container {
-  width: auto;
-  border: 1px solid red;
-  padding: 6px;
-  margin-left: 25px;
-  margin-top: 25px;
-  margin-right: 25px;
 }

@@ -47,11 +47,7 @@ var WidgetStore = assign({}, EventEmitter.prototype, {
 	 * @return {object}
 	 */
 	get: function(id) {
-		for (var widget in _widgets) {
-			if (id === widget.id)
-				return morv.validate(widget)
-		}
-		return morv.error("No widget found")
+		return _widgets[id]
 	},
 
 	/* Get all Widgets
