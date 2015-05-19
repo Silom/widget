@@ -175,9 +175,33 @@ React.render(
 				dass daten einen funktionscontext geben soll.
 				-->
 				<section>
-					// Kann auch als daten serilizer verwendet werden
-					// Mit netzwerk resourcen über ajax befüllen
-					// Mehr funktionen
+					<section>
+						<h2>Weitergehende Entwicklung</h2>
+						<p class="fragment" data-fragment-index="1">Erweiterbarkeit</p>
+						<p class="fragment" data-fragment-index="2">Templating</p>
+
+					</section>
+					<section>
+						<h2>Erweiterbarkeit</h2>
+						<pre><code data-trim contenteditable>
+var WidgetAction = require('../actions/WidgetAction')
+var Flexbox = function() {...}
+WidgetAction.register('Flexbox', Flexbox)
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Templating mit JSX</h2>
+						<pre><code data-trim contenteditable>
+var widget = { meta: 'templateUrl' }
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<p>
+						Danke für Ihre Aufmerksamkeit
+					</p>
 				</section>
 			</div>
 		</div>
