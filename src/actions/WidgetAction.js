@@ -14,20 +14,18 @@ var WidgetAction = {
       id: id
     })
 	},
-	update: function(id, update) {
+	update: function(widget) {
 		 AppDispatcher.dispatch({
       actionType: WidgetConstants.WIDGET_UPDATE,
-      id: id,
-			payload: update
+			payload: widget
     })
 	},
-	order: function (id, order) {
+	register: function(id, feature) {
 		 AppDispatcher.dispatch({
-      actionType: WidgetConstants.WIDGET_ORDER,
-      id: id,
-			payload: order
+      actionType: WidgetConstants.WIDGET_REGISTER,
+			id: id,
+			payload: feature
     })
-
 	}
 }
 

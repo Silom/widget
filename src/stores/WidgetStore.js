@@ -9,8 +9,12 @@ const CHANGE_EVENT = "change"
 const STORAGE_KEY = "widgets"
 
 let _widgets = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}
+let _feature = []
 
 function saveToLocalStorage() {
+	for (var widgetObj in _widgets) {
+		delete widgetObj.ext
+	}
 	localStorage.setItem(STORAGE_KEY, JSON.stringify(_widgets))
 }
 
@@ -24,13 +28,7 @@ function create(widget, id) {
 }
 
 function update(id, update) {
-	_widgets[id] = assign({}, _widgets[id], update)
-	saveToLocalStorage()
-	return _widgets[id]
-}
-// FIXME get it working with the update function only
-function updateOrder(id, order) {
-	_widgets[id].feature.flexbox.order = order
+	_widgets[id] = update
 	saveToLocalStorage()
 	return _widgets[id]
 }
@@ -41,6 +39,9 @@ function destroy(id) {
 	return id
 }
 
+function register(id, payload) {
+	_feature[id] = payload
+}
 
 var WidgetStore = assign({}, EventEmitter.prototype, {
 	/* Get Widget by its id
@@ -54,8 +55,19 @@ var WidgetStore = assign({}, EventEmitter.prototype, {
 	 * @return {array}
 	 */
 	getAll: function() {
+		for (var widgetKey in _widgets) {
+			for (var key in _widgets[widgetKey].feature) {
+			  if (_widgets[widgetKey].feature.hasOwnProperty(key) && _feature[key]) {
+					_widgets[widgetKey].ext = {}
+					// merge feature and data objekt and write them to ext
+					_widgets[widgetKey].ext[key] = assign({}, _feature[key], _widgets[widgetKey].feature[key])
+			  }
+			}
+		}
+
 		return _widgets
 	},
+
 
 	emitChange: function() {
     this.emit(CHANGE_EVENT);
@@ -91,12 +103,12 @@ AppDispatcher.register(function(action) {
       break
 
     case AppConstants.WIDGET_UPDATE:
-      // update()
+      update(action.payload._id, action.payload)
       WidgetStore.emitChange()
       break
 
-    case AppConstants.WIDGET_ORDER:
-      updateOrder(action.id, action.payload)
+    case AppConstants.WIDGET_REGISTER:
+      register(action.id, action.payload)
       WidgetStore.emitChange()
       break
 

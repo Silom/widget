@@ -12,12 +12,15 @@ describe('WidgetStore', function() {
   // mock actions
   var actionWidgetCreate = {
     actionType: WidgetConstants.WIDGET_CREATE,
-    payload: {meta: '<h1>Test</h1>'}
+    payload: {meta: '<h1>Test</h1>', feature: {}}
   }
-
   var actionWidgetDestroy = {
     actionType: WidgetConstants.WIDGET_DESTROY,
     id: 'replace me in test'
+  }
+  var actionWidgetUpdate = {
+    actionType: WidgetConstants.WIDGET_UPDATE,
+    payload: 'replace me in test'
   }
 
   beforeEach(function() {
@@ -42,6 +45,15 @@ describe('WidgetStore', function() {
     expect(all[keys[0]].meta).toEqual('<h1>Test</h1>')
   })
 
+  it('update a widget', function() {
+    callback(actionWidgetCreate)
+    var all = WidgetStore.getAll()
+    var keys = Object.keys(all)
+    keys[0].meta = '<h1>Test2</h1>'
+    actionWidgetUpdate.payload = keys[0]
+    expect(all[keys[0]].meta).toEqual('<h1>Test2</h1>')
+  })
+
   it('destroy item', function() {
     callback(actionWidgetCreate)
     var all = WidgetStore.getAll()
@@ -50,4 +62,6 @@ describe('WidgetStore', function() {
     callback(actionWidgetDestroy)
     expect(all[keys[0]]).toBeUndefined()
   })
+
+  // register
 })

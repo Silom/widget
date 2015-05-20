@@ -47,7 +47,7 @@ var WidgetCreation = React.createClass({
     WidgetAction.create({
 			meta: document.querySelector('#type-form-section input:checked').value === 'list' ? listJsx : textJsx,
 			feature: {
-				close: true,
+				close: {},
 				flexbox: {
 					order: 1
 				},

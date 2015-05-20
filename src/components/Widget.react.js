@@ -3,7 +3,6 @@ var PropTypes = React.PropTypes
 var WidgetStore = require('../stores/WidgetStore')
 var WidgetAction = require('../actions/WidgetAction')
 
-
 var Widget = React.createClass({
 	propTypes: {
     widget: PropTypes.object.isRequired
@@ -38,21 +37,14 @@ var Widget = React.createClass({
   delete: function() {
     WidgetAction.destroy(this.props.widget._id)
   },
-  update: function() {
-		// TODO
-    // WidgetAction.update(id, changes)
-  },
 	reorderDec: function () {
-		if (this.props.widget.feature.flexbox.order <= 1)
-			WidgetAction.order(this.props.widget._id, 1)
-		else
-			WidgetAction.order(this.props.widget._id, (this.props.widget.feature.flexbox.order - 1))
+		this.props.widget.ext.flexbox.dec(this)
 	},
 	reorderInc: function () {
-		WidgetAction.order(this.props.widget._id, (this.props.widget.feature.flexbox.order + 1))
+		this.props.widget.ext.flexbox.inc(this)
 	},
 	amendThemeClass: function () {
-		return "widget theme-" + (this.props.widget.feature.style.class || 'default')
+		return "widget theme-" + this.props.widget.feature.style.class || 'default'
 	},
 	getFlexboxOrder: function () {
 		return {order: this.props.widget.feature.flexbox.order}

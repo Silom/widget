@@ -1,8 +1,9 @@
 var React = require('react')
 var WidgetStore = require('../stores/WidgetStore')
-
 var WidgetCreation = require('./WidgetCreation.react')
 var WidgetListing = require('./WidgetListing.react')
+
+require('../bootstrap.js')
 
 
 function getWidgetState() {
@@ -33,6 +34,5 @@ var WidgetApp = React.createClass({
     this.setState(getWidgetState())
   }
 })
-
 
 module.exports = WidgetApp

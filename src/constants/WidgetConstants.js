@@ -4,5 +4,5 @@ module.exports = keymirror({
   WIDGET_CREATE: null,
   WIDGET_DESTROY: null,
   WIDGET_UPDATE: null,
-  WIDGET_ORDER: null
+  WIDGET_REGISTER: null
 })
